@@ -1,4 +1,5 @@
 <template>
+    <ListGenerator :is-movie="true"/>
     <ListGenerator :is-movie="false"/>
 </template>
 
