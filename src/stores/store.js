@@ -34,6 +34,7 @@ export const store = reactive({
                 }
             }).then(resp => {
                 store.dt.seriesList = resp.data.results;
+                console.log(store.dt.seriesList)
             }).catch(error => {
                 console.log(error);
             });
