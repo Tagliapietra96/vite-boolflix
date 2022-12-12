@@ -1,18 +1,22 @@
 <template>
-  
+  <AppHeader />
+  <AppMain />
 </template>
 
 
 
 <script>
-import {store} from './stores/store';
+import { store } from './stores/store';
+import AppHeader from './components/AppHeader.vue';
+import AppMain from './components/AppMain.vue';
 export default {
-  data(){
-    return{
+  components: { AppHeader, AppMain },
+  data() {
+    return {
       store,
     }
   },
-  mounted(){
+  mounted() {
     this.store.fn.fetchData();
   }
 }
@@ -21,6 +25,5 @@ export default {
 
 
 <style lang="scss">
-  @use './styles/general.scss';
-
+@use './styles/general.scss';
 </style>
