@@ -5,8 +5,16 @@
 
 
 <script>
+import {store} from './stores/store';
 export default {
-  
+  data(){
+    return{
+      store,
+    }
+  },
+  mounted(){
+    this.store.fn.fetchData();
+  }
 }
 </script>
 
@@ -14,5 +22,5 @@ export default {
 
 <style lang="scss">
   @use './styles/general.scss';
-  
+
 </style>
