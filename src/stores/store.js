@@ -4,6 +4,7 @@ import { reactive } from 'vue';
 export const store = reactive({
     dt: {
         apiKey: '5f094bb02b0cd61d4ff7bc4872d8beca',
+        search: '',
         urlBase: 'https://api.themoviedb.org/3',
         urlMovies: '/movie/popular',
         urlSeries: '/tv/popular',
@@ -16,7 +17,8 @@ export const store = reactive({
 
             axios.get(store.dt.urlBase + store.dt.urlMovies, {
                 params: {
-                    api_key: store.dt.apiKey
+                    api_key: store.dt.apiKey,
+                    query: store.dt.search
                 }
             }).then(resp => {
                 store.dt.moviesList = resp.data.results;
@@ -27,7 +29,8 @@ export const store = reactive({
 
             axios.get(store.dt.urlBase + store.dt.urlSeries, {
                 params: {
-                    api_key: store.dt.apiKey
+                    api_key: store.dt.apiKey,
+                    query: store.dt.search
                 }
             }).then(resp => {
                 store.dt.seriesList = resp.data.results;
@@ -35,5 +38,6 @@ export const store = reactive({
                 console.log(error);
             });
         },
+
     }
 })
