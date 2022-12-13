@@ -1,7 +1,7 @@
 <template>
-    <ul>
+    <div class="row row-cols-1 row-cols-lg-2 g-5">
         <SingleElement v-for="element in getList()" :element="element" :is-movie="isMovie"/>
-    </ul>
+    </div>
 </template>
 
 
@@ -33,6 +33,6 @@ export default {
 
 
 
-<style lang="scss">
+<style scoped lang="scss">
     
 </style>

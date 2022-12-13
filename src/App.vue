@@ -1,6 +1,6 @@
 <template>
-  <AppHeader @on-searching="filterResults" />
-  <AppMain />
+    <AppHeader @on-searching="filterResults" />
+    <AppMain />
 </template>
 
 
