@@ -1,16 +1,16 @@
 <template>
     <header class="bg-dark border-bottom border-secondary position-fixed top-0 end-0 start-0 p-3">
         <div class="container  ">
-            <div class="row row-cols-3 justify-content-between align-items-center">
+            <div class="row row-cols-2 row-cols-lg-3 justify-content-between align-items-center">
                 <div class="col">
                     <h1 class="text-danger m-0">BOOLFLIX</h1>
                 </div>
                 <div class="col text-white text-center justify-content-between align-items-center d-none d-lg-flex">
-                    <p class="m-0">Home</p>
-                    <p class="m-0">Home</p>
-                    <p class="m-0">Home</p>
-                    <p class="m-0">Home</p>
-                    <p class="m-0">Home</p>
+                    <a href="#" class="m-0 text-white text-decoration-none">Home</a>
+                    <a href="#" class="m-0 text-white text-decoration-none">Home</a>
+                    <a href="#" class="m-0 text-white text-decoration-none">Home</a>
+                    <a href="#" class="m-0 text-white text-decoration-none">Home</a>
+                    <a href="#" class="m-0 text-white text-decoration-none">Home</a>
                 </div>
                 <div class="col">
                     <form @submit.prevent="sub" class="input-group input-group-sm w-50 ms-auto">
@@ -47,5 +47,11 @@ export default {
 <style scoped lang="scss">
     header{
         z-index: 1000;
+        a{
+            transition: all .5s;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
     }
 </style>
