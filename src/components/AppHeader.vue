@@ -5,7 +5,7 @@
                 <div class="col">
                     <h1 class="text-danger m-0">BOOLFLIX</h1>
                 </div>
-                <div class="col text-white text-center d-flex justify-content-between align-items-center">
+                <div class="col text-white text-center justify-content-between align-items-center d-none d-lg-flex">
                     <p class="m-0">Home</p>
                     <p class="m-0">Home</p>
                     <p class="m-0">Home</p>
