@@ -28,8 +28,8 @@
                     </h2>
                     <h2 class="fs-1">
                         Rating:
-                        <i class="fa-solid fa-star" v-for="placeholder in fullStars"></i>
-                        <i class="fa-regular fa-star" v-for="placeholder in emptyStars"></i>
+                        <i class="fa-solid fa-star text-warning" v-for="placeholder in fullStars"></i>
+                        <i class="fa-regular fa-star text-warning" v-for="placeholder in emptyStars"></i>
                     </h2>
                     <h2 class="fs-1">
                         Cast: 
