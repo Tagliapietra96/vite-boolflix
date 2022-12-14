@@ -10,6 +10,7 @@ export const store = reactive({
         urlMovies: '/movie/popular',
         urlSeries: '/tv/popular',
         urlCast: '',
+        urlGenre: '',
         imgBase: 'https://image.tmdb.org/t/p/original',
         movieScreenTitle: 'FILM POPOLARI SU BOOLFLIX',
         serieScreenTitle: 'SERIE TV POPOLARI SU BOOLFLIX',
@@ -17,6 +18,7 @@ export const store = reactive({
         moviesList: [],
         dummyCastList: [],
         castList: [],
+        genresList: [],
     },
     fn: {
         fetchData() {
@@ -59,6 +61,19 @@ export const store = reactive({
                     store.dt.castList.push(store.dt.dummyCastList[i].name)
                 }
                 console.log(store.dt.castList)
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        fetchGenres(){
+            store.dt.genresList = [];
+            axios.get(store.dt.urlBase + store.dt.urlGenre, {
+                params: {
+                    api_key: store.dt.apiKey,
+                }
+            }).then(resp => {
+                store.dt.genresList = resp.data.genres;
+                console.log(store.dt.genresList)
             }).catch(error => {
                 console.log(error);
             });

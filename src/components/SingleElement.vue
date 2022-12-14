@@ -32,6 +32,10 @@
                         <i class="fa-regular fa-star text-warning" v-for="placeholder in emptyStars"></i>
                     </h2>
                     <h2 class="fs-1">
+                        Genres: 
+                        <span class="fs-2 genres-list" v-for="obj in store.dt.genresList">{{ ' ' + obj.name}}</span>
+                    </h2>
+                    <h2 class="fs-1">
                         Cast: 
                         <span class="fs-2 cast-list" v-for="name in store.dt.castList">{{ ' ' + name}}</span>
                     </h2>
@@ -88,10 +92,13 @@ export default {
         getDetails(id){
             if(this.isMovie){
                 this.store.dt.urlCast = `/movie/${id}/credits`;
+                this.store.dt.urlGenre = `/movie/${id}`;
             }else{
                 this.store.dt.urlCast = `/tv/${id}/credits`;
+                this.store.dt.urlGenre = `/tv/${id}`;
             }
             this.store.fn.fetchCast();
+            this.store.fn.fetchGenres();
             this.details = true
         },
     },
@@ -126,7 +133,8 @@ div.info {
     z-index: 1001;
     h2{
         margin-bottom: 1.5rem;
-        .cast-list:not(:last-of-type):after{
+        .cast-list:not(:last-of-type):after,
+        .genres-list:not(:last-of-type):after{
             content: ",";
         }
         .cast-list:nth-child(5)::after{

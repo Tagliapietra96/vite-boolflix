@@ -29,8 +29,8 @@ export default {
         this.store.dt.urlMovies = '/movie/popular';
         this.store.dt.urlSeries = '/tv/popular';
       } else {
-        this.store.dt.movieScreenTitle = `RISULTATI IN FILM PER: "${search}"`;
-        this.store.dt.serieScreenTitle = `RISULTATI IN SERIE TV PER: "${search}"`;
+        this.store.dt.movieScreenTitle = `RISULTATI IN FILM PER: "${search.toUpperCase()}"`;
+        this.store.dt.serieScreenTitle = `RISULTATI IN SERIE TV PER: "${search.toUpperCase()}"`;
         this.store.dt.urlMovies = '/search/movie';
         this.store.dt.urlSeries = '/search/tv';
       }
