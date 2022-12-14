@@ -4,6 +4,7 @@ import { reactive } from 'vue';
 export const store = reactive({
     dt: {
         loading: true,
+        visible: 'all',
         apiKey: '5f094bb02b0cd61d4ff7bc4872d8beca',
         search: '',
         urlBase: 'https://api.themoviedb.org/3',
@@ -19,6 +20,9 @@ export const store = reactive({
         dummyCastList: [],
         castList: [],
         genresList: [],
+        allGenresList:[],
+        dummyGenresList: []
+
     },
     fn: {
         fetchData() {
@@ -43,11 +47,32 @@ export const store = reactive({
             }).then(resp => {
                 store.dt.seriesList = resp.data.results;
                 console.log(store.dt.seriesList)
-                store.dt.loading = false;
             }).catch(error => {
                 console.log(error);
             });
 
+            axios.get(store.dt.urlBase + '/genre/movie/list', {
+                params: {
+                    api_key: store.dt.apiKey,
+                }
+            }).then(resp => {
+                store.dt.allGenresList = resp.data.genres;
+                console.log(store.dt.allGenresList)
+            }).catch(error => {
+                console.log(error);
+            });
+
+            axios.get(store.dt.urlBase + '/genre/tv/list', {
+                params: {
+                    api_key: store.dt.apiKey,
+                }
+            }).then(resp => {
+                store.dt.dummyGenresList = resp.data.genres;
+                console.log(store.dt.allGenresList)
+                store.dt.loading = false;
+            }).catch(error => {
+                console.log(error);
+            });
         },
         fetchCast(){
             store.dt.castList = [];

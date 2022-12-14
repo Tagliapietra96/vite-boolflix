@@ -4,7 +4,7 @@
     v-if="store.dt.loading">
     <h2 class="fs-1">Loading...</h2>
   </div>
-  <AppMain v-else/>
+  <AppMain v-else />
   <AppHeader @on-searching="filterResults" />
 </template>
 
@@ -40,6 +40,7 @@ export default {
   },
   mounted() {
     this.store.fn.fetchData();
+
   }
 }
 </script>
