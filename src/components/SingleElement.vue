@@ -3,7 +3,8 @@
         <div class=" position-relative">
             <img v-if="element.backdrop_path" class="rounded-3" :src="store.dt.imgBase + element.backdrop_path">
             <img v-else src="../../public/Image_not_available.png">
-            <div class="overlay rounded-3 position-absolute top-0 bottom-0 start-0 end-0 py-3 px-5 text-white fs-3">
+            <div class="overlay rounded-3 position-absolute top-0 bottom-0 start-0 end-0 py-3 px-5 text-white fs-3"
+                @click="details = true">
                 <div v-if="isMovie">
                     <p v-if="element.original_title !== element.title">{{ element.original_title }}</p>
                     <p>{{ element.title }}</p>
@@ -18,7 +19,21 @@
                     <i class="fa-regular fa-star" v-for="placeholder in emptyStars"></i>
                 </p>
             </div>
-
+            <div v-if="details" class="info position-fixed top-0 bottom-0 start-0 end-0 d-flex align-items-center"
+                @click="details = false">
+                <div class="container h-75 bg-dark rounded-5 p-5 text-white ">
+                    <h2 v-if="isMovie" class="fs-1">Title: {{ element.title }}</h2>
+                    <h2 v-else class="fs-1">Title: {{ element.name }}</h2>
+                    <h2 class="fs-1">Language: <span :class="'fs-2 fi fi-' + getFlag(element.original_language)"></span>
+                    </h2>
+                    <h2 class="fs-1">
+                        Rating:
+                        <i class="fa-solid fa-star" v-for="placeholder in fullStars"></i>
+                        <i class="fa-regular fa-star" v-for="placeholder in emptyStars"></i>
+                    </h2>
+                    <h2 class="fs-1"></h2>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -35,6 +50,7 @@ export default {
     data() {
         return {
             store,
+            details: false,
             fullStars: [],
             emptyStars: [],
         }
@@ -82,13 +98,18 @@ img {
     object-position: center;
 }
 
-.overlay{
+.overlay {
     background-color: rgba(0, 0, 0, .8);
     opacity: 0;
     transition: opacity .5s;
-    &:hover{
-        opacity:1;
+
+    &:hover {
+        opacity: 1;
     }
 }
 
+div.info {
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 1001;
+}
 </style>
