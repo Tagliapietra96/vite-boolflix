@@ -21,7 +21,7 @@
             </div>
             <div v-if="details" class="info position-fixed top-0 bottom-0 start-0 end-0 d-flex align-items-center"
                 @click="details = false">
-                <div class="container h-75 bg-dark rounded-5 p-5 text-white ">
+                <div class="container h-75 bg-dark rounded-5 p-5 text-white overflow-auto">
                     <h2 v-if="isMovie" class="fs-1">Title: {{ element.title }}</h2>
                     <h2 v-else class="fs-1">Title: {{ element.name }}</h2>
                     <h2 class="fs-1">Language: <span :class="'fs-2 fi fi-' + getFlag(element.original_language)"></span>
@@ -33,10 +33,9 @@
                     </h2>
                     <h2 class="fs-1">
                         Cast: 
-                        <span class="fs-2" v-for="name in store.dt.castList">{{name}}, </span>
-                        <span class="fs-2">and more...</span>
+                        <span class="fs-2 cast-list" v-for="name in store.dt.castList">{{ ' ' + name}}</span>
                     </h2>
-                    <h2 class="fs-1"></h2>
+                    <h2 class="fs-1">Overview: <span class="fs-2">{{element.overview}}</span></h2>
                 </div>
             </div>
         </div>
@@ -125,5 +124,14 @@ img {
 div.info {
     background-color: rgba(0, 0, 0, .8);
     z-index: 1001;
+    h2{
+        margin-bottom: 1.5rem;
+        .cast-list:not(:last-of-type):after{
+            content: ",";
+        }
+        .cast-list:nth-child(5)::after{
+            content: ", and more...";
+        }
+    }
 }
 </style>
