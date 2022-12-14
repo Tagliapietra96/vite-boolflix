@@ -4,7 +4,7 @@
             <img v-if="element.backdrop_path" class="rounded-3" :src="store.dt.imgBase + element.backdrop_path">
             <img v-else src="../../public/Image_not_available.png">
             <div class="overlay rounded-3 position-absolute top-0 bottom-0 start-0 end-0 py-3 px-5 text-white fs-3"
-                @click="details = true">
+                @click="getDetails(element.id)">
                 <div v-if="isMovie">
                     <p v-if="element.original_title !== element.title">{{ element.original_title }}</p>
                     <p>{{ element.title }}</p>
@@ -30,6 +30,11 @@
                         Rating:
                         <i class="fa-solid fa-star" v-for="placeholder in fullStars"></i>
                         <i class="fa-regular fa-star" v-for="placeholder in emptyStars"></i>
+                    </h2>
+                    <h2 class="fs-1">
+                        Cast: 
+                        <span class="fs-2" v-for="name in store.dt.castList">{{name}}, </span>
+                        <span class="fs-2">and more...</span>
                     </h2>
                     <h2 class="fs-1"></h2>
                 </div>
@@ -80,6 +85,15 @@ export default {
             for (let i = 0; i < numEmpty; i++) {
                 this.emptyStars.push('placeHolder')
             }
+        },
+        getDetails(id){
+            if(this.isMovie){
+                this.store.dt.urlCast = `/movie/${id}/credits`;
+            }else{
+                this.store.dt.urlCast = `/tv/${id}/credits`;
+            }
+            this.store.fn.fetchCast();
+            this.details = true
         },
     },
     created() {

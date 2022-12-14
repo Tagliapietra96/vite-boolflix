@@ -8,9 +8,12 @@ export const store = reactive({
         urlBase: 'https://api.themoviedb.org/3',
         urlMovies: '/movie/popular',
         urlSeries: '/tv/popular',
+        urlCast: '',
         imgBase: 'https://image.tmdb.org/t/p/original',
         seriesList: [],
-        moviesList: []
+        moviesList: [],
+        dummyCastList: [],
+        castList: [],
     },
     fn: {
         fetchData() {
@@ -39,6 +42,22 @@ export const store = reactive({
                 console.log(error);
             });
 
+        },
+        fetchCast(){
+            store.dt.castList = [];
+            axios.get(store.dt.urlBase + store.dt.urlCast, {
+                params: {
+                    api_key: store.dt.apiKey,
+                }
+            }).then(resp => {
+                store.dt.dummyCastList = resp.data.cast;
+                for(let i = 0; i < 5; i++){
+                    store.dt.castList.push(store.dt.dummyCastList[i].name)
+                }
+                console.log(store.dt.castList)
+            }).catch(error => {
+                console.log(error);
+            });
         },
 
     }
