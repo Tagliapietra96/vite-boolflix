@@ -3,6 +3,7 @@ import { reactive } from 'vue';
 
 export const store = reactive({
     dt: {
+        loading: true,
         apiKey: '5f094bb02b0cd61d4ff7bc4872d8beca',
         search: '',
         urlBase: 'https://api.themoviedb.org/3',
@@ -10,6 +11,8 @@ export const store = reactive({
         urlSeries: '/tv/popular',
         urlCast: '',
         imgBase: 'https://image.tmdb.org/t/p/original',
+        movieScreenTitle: 'FILM POPOLARI SU BOOLFLIX',
+        serieScreenTitle: 'SERIE TV POPOLARI SU BOOLFLIX',
         seriesList: [],
         moviesList: [],
         dummyCastList: [],
@@ -17,7 +20,7 @@ export const store = reactive({
     },
     fn: {
         fetchData() {
-
+            store.dt.loading = true;
             axios.get(store.dt.urlBase + store.dt.urlMovies, {
                 params: {
                     api_key: store.dt.apiKey,
@@ -38,6 +41,7 @@ export const store = reactive({
             }).then(resp => {
                 store.dt.seriesList = resp.data.results;
                 console.log(store.dt.seriesList)
+                store.dt.loading = false;
             }).catch(error => {
                 console.log(error);
             });
