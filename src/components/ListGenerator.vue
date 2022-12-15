@@ -1,5 +1,5 @@
 <template >
-    <div  v-if="getVisible()" class="container pb-5">
+    <div  v-if="getVisible() && getList().length > 0" class="container pb-5">
         <h2 v-if="isMovie" class="text-center mb-4 fs-1 pt-5">{{store.dt.movieScreenTitle}}</h2>
         <h2  v-else class="text-center mb-4 fs-1 pt-5">{{store.dt.serieScreenTitle}}</h2>
         <div class="row row-cols-1 row-cols-lg-2 g-5">

@@ -6,7 +6,8 @@
                     <h1 class="text-danger m-0">BOOLFLIX</h1>
                 </div>
                 <div class="col text-white text-center justify-content-between align-items-center d-none d-lg-flex">
-                    <a href="#" class="m-0 text-white text-decoration-none" @click="store.dt.visible = 'all'">Home</a>
+                    <a href="#" class="m-0 text-white text-decoration-none" @click="returnToHome">Home</a>
+                    <a href="#" class="m-0 text-white text-decoration-none" @click="store.dt.visible = 'all'">All Categories</a>
                     <a href="#" class="m-0 text-white text-decoration-none" @click="store.dt.visible = 'tv'">Tv
                         Series</a>
                     <a href="#" class="m-0 text-white text-decoration-none"
@@ -16,7 +17,7 @@
                         class="genres position-fixed top-0 bottom-0 start-0 end-0 d-flex align-items-center">
                         <div class="container h-75 bg-dark rounded-5 p-5 text-white overflow-auto " @mouseleave="showGenres=false">
                             <div class="row row-cols-5 g-4 align-items-center h-100">
-                                <div v-for="genre in store.dt.allGenresList" class="col">
+                                <div v-for="genre in store.dt.allGenresList" @click="onGenresSelection(genre)" class="col">
                                     <h2>{{ genre.name }}</h2>
                                 </div>
                             </div>
@@ -40,7 +41,7 @@
 <script>
 import { store } from '../stores/store.js';
 export default {
-    emits: ['onSearching'],
+    emits: ['onSearching', 'onGenreFilter'],
     data() {
         return {
             store,
@@ -60,6 +61,15 @@ export default {
             });
             console.log(this.store.dt.allGenresList)
             this.showGenres = true
+        },
+        onGenresSelection(obj){
+            this.showGenres = false;
+            this.$emit('onGenreFilter', obj)
+        },
+        returnToHome(){
+            this.search = '';
+            this.store.dt.visible = 'all';
+            this.sub();
         }
     },
     mounted() {

@@ -5,7 +5,7 @@
     <h2 class="fs-1">Loading...</h2>
   </div>
   <AppMain v-else />
-  <AppHeader @on-searching="filterResults" />
+  <AppHeader @on-searching="filterResults" @on-genre-filter="filterByGenres" />
 </template>
 
 
@@ -34,7 +34,17 @@ export default {
         this.store.dt.urlMovies = '/search/movie';
         this.store.dt.urlSeries = '/search/tv';
       }
+      this.store.dt.genresFilter = null
       this.store.dt.search = search;
+      this.store.fn.fetchData();
+    },
+    filterByGenres(obj) {
+      this.store.dt.genresFilter = obj.id;
+      this.store.dt.urlMovies = '/discover/movie';
+      this.store.dt.urlSeries = '/discover/tv';
+      this.store.dt.movieScreenTitle = `RISULTATI IN FILM PER GENERE: "${obj.name}"`;
+      this.store.dt.serieScreenTitle = `RISULTATI IN SERIE TV PER GENERE: "${obj.name}"`;
+      this.store.dt.visible = 'all';
       this.store.fn.fetchData();
     }
   },
